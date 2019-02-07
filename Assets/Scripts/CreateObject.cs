@@ -13,9 +13,25 @@ public class CreateObject : MonoBehaviour
     void OnTriggerEnter()
         {
             Instantiate(Prefab, Spawnpoint.position, Spawnpoint.rotation);
+			
         Instantiate(Prefab, Spawnpoint2.position, Spawnpoint2.rotation);
+		
+		if (Spawnpoint2 == null)
+		{
+			Destroy(gameObject);
+		}
+		
         Instantiate(Prefab, Spawnpoint3.position, Spawnpoint3.rotation);
-
+		
+		if (Spawnpoint3 == null)
+		{
+			Destroy(gameObject);
+		}
+		
+        Destroy(gameObject);
+		
+		
+		
         }
 
 }
