@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Killbox
   - Floor
+  - Switch
   layers:
   - Default
   - TransparentFX
