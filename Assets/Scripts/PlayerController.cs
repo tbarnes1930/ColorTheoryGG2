@@ -10,13 +10,28 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight;
     public Rigidbody rb;
     public bool jumpCheck;
-	
-	
-	
+
+    public AudioSource switchSound;
+    public AudioClip switchGrab;
+
+    [Range(0.0f, 1.0f)]
+    public float switchVolume;
+
+    public AudioSource jumpSource;
+    public AudioClip jumpSound;
+
+    [Range(0.0f, 1.0f)]
+    public float jumpVolume;
+
+    public GameObject item;
+    public GameObject temParent;
+    public Transform guide;
 	
     void Start()
     {
          jumpCheck = true;
+         Cursor.visible = false;
+         item.GetComponent<Rigidbody>().useGravity = true;
     }
 
     // Update is called once per frame
@@ -51,15 +66,15 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        /*if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetAxis("Mouse X") < 0)
         {
             transform.Rotate(0, ((Time.deltaTime * yRotate) * -1), 0);
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetAxis("Mouse X") > 0)
         {
             transform.Rotate(0, (Time.deltaTime * yRotate), 0);
-        }*/
+        }
     }
 	
 	 void OnCollisionEnter(Collision collision)
@@ -69,10 +84,25 @@ public class PlayerController : MonoBehaviour
             jumpCheck = true;
 
         }
-        
+
+        if (collision.gameObject.tag == "Bounce")
+        {
+            OnMouseDown();
+
+            OnMouseUp();
+        }
 
     }
+
+    void OnTriggerEnter(Collider other)
+     {
+         if (other.gameObject.tag == "Switch")
+         {
+             switchSound.PlayOneShot(switchGrab, switchVolume);
+         }
+     }
 	
+    
 	 private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "Floor")
@@ -87,6 +117,25 @@ public class PlayerController : MonoBehaviour
         if (jumpCheck == true)
         {
             rb.AddForce(transform.up * jumpHeight);
+            jumpSource.PlayOneShot(jumpSound, jumpVolume);
         }
     }
+
+     void OnMouseDown()
+     {
+         item.GetComponent<Rigidbody>().useGravity = false;
+         item.GetComponent<Rigidbody>().isKinematic = true;
+         item.transform.position = guide.transform.position;
+         item.transform.rotation = guide.transform.rotation;
+         item.transform.parent = temParent.transform;
+     }
+
+     void OnMouseUp()
+     {
+         item.GetComponent<Rigidbody>().useGravity = true;
+         item.GetComponent<Rigidbody>().isKinematic = false;
+         item.transform.parent = null;
+         item.transform.position = guide.transform.position;
+
+     }
 }

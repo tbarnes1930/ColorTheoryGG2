@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
-    path: Assets/Scenes/Win.unity
-    guid: 887fcd4d9eda940f7b6cd89fbfda99bf
+  - enabled: 1
+    path: Assets/Scenes/Orange_Level.unity
+    guid: ffef925911f654242860760dab5f046c
+  - enabled: 1
+    path: Assets/Scenes/Green_Level.unity
+    guid: 206bd0c3b2def4cdfa22cba2b242f028
   m_configObjects: {}

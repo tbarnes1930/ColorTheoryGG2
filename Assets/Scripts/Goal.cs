@@ -15,7 +15,7 @@ public class Goal : MonoBehaviour
     private void OnTriggerEnter(Collider objectCollided)
         {
             if (objectCollided.gameObject.tag == "Goal")
-                SceneManager.LoadScene("Win");
+                SceneManager.LoadScene("Orange_Level");
         }
 
     }

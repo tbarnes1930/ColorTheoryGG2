@@ -9,6 +9,8 @@ TagManager:
   - Switch
   - Goal
   - Checkpoint
+  - Bounce
+  - Goal1
   layers:
   - Default
   - TransparentFX
