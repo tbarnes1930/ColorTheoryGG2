@@ -5,19 +5,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed;
+     public float moveSpeed;
     public float yRotate;
     public float jumpHeight;
     public Rigidbody rb;
     public bool jumpCheck;
-    public AudioSource JumpSound;
-
-
-
+	
+	
+	
+	
     void Start()
     {
-        jumpCheck = true;
-        JumpSound = GetComponent<AudioSource>();
+         jumpCheck = true;
     }
 
     // Update is called once per frame
@@ -50,10 +49,9 @@ public class PlayerController : MonoBehaviour
 		 if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
-            JumpSound.Play();
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        /*if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Rotate(0, ((Time.deltaTime * yRotate) * -1), 0);
         }
@@ -61,7 +59,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.Rotate(0, (Time.deltaTime * yRotate), 0);
-        }
+        }*/
     }
 	
 	 void OnCollisionEnter(Collision collision)
@@ -71,7 +69,8 @@ public class PlayerController : MonoBehaviour
             jumpCheck = true;
 
         }
-      
+        
+
     }
 	
 	 private void OnCollisionExit(Collision collision)
